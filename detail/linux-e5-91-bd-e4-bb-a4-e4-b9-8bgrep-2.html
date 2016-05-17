@@ -1,0 +1,979 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="ls命令是linux下最常用的命令。ls命令就是list的缩写缺省下ls用来打印出当前目录的清单如果ls指定其他目录那么就会显示指定目录里的文件及文件夹清单。 通过ls 命令不仅可以查看linux文件夹包含的文件而且可以查看文件权限(包括目录、文件夹、文件权限)查看目录信息等等。ls 命令在日常的linux操作中用的很多!
+
+  命令格式：
+
+ls [选项] [目录名]
+
+  命令功能：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux命令之ls">
+<meta property="og:url" content="http://post.zz173.com/detail/linux-e5-91-bd-e4-bb-a4-e4-b9-8bgrep-2.html">
+<meta property="og:site_name" content="青枫浦">
+<meta property="og:description" content="ls命令是linux下最常用的命令。ls命令就是list的缩写缺省下ls用来打印出当前目录的清单如果ls指定其他目录那么就会显示指定目录里的文件及文件夹清单。 通过ls 命令不仅可以查看linux文件夹包含的文件而且可以查看文件权限(包括目录、文件夹、文件权限)查看目录信息等等。ls 命令在日常的linux操作中用的很多!
+
+  命令格式：
+
+ls [选项] [目录名]
+
+  命令功能：">
+<meta property="og:updated_time" content="2016-05-16T05:03:05.150Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux命令之ls">
+<meta name="twitter:description" content="ls命令是linux下最常用的命令。ls命令就是list的缩写缺省下ls用来打印出当前目录的清单如果ls指定其他目录那么就会显示指定目录里的文件及文件夹清单。 通过ls 命令不仅可以查看linux文件夹包含的文件而且可以查看文件权限(包括目录、文件夹、文件权限)查看目录信息等等。ls 命令在日常的linux操作中用的很多!
+
+  命令格式：
+
+ls [选项] [目录名]
+
+  命令功能：">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 2664337,
+      author: '<i class="fa fa-vimeo"></i>'
+    }
+  };
+</script>
+
+  <title> Linux命令之ls | 青枫浦 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">青枫浦</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">落月博客post.zz173.com</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux命令之ls
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-11T19:14:30+08:00" content="2015-11-11">
+              2015-11-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nix/" itemprop="url" rel="index">
+                    <span itemprop="name">*nix</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/detail/linux-e5-91-bd-e4-bb-a4-e4-b9-8bgrep-2.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="251" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ls命令是linux下最常用的命令。ls命令就是list的缩写缺省下ls用来打印出当前目录的清单如果ls指定其他目录那么就会显示指定目录里的文件及文件夹清单。 通过ls 命令不仅可以查看linux文件夹包含的文件而且可以查看文件权限(包括目录、文件夹、文件权限)查看目录信息等等。ls 命令在日常的linux操作中用的很多!</p>
+<ol>
+  <li>命令格式：</li>
+</ol>
+<p>ls [选项] [目录名]</p>
+<ol>
+  <li>命令功能：</li>
+</ol>
+<p>列出目标目录中所有的子目录和文件。</p>
+<ol>
+  <li>常用参数：</li>
+</ol>
+<p>-a, –all 列出目录下的所有文件，包括以 . 开头的隐含文件</p>
+<p>-A 同-a，但不列出“.”(表示当前目录)和“..”(表示当前目录的父目录)。</p>
+<p>-c 配合 -lt：根据 ctime 排序及显示 ctime (文件状态最后更改的时间)配合 -l：显示 ctime 但根据名称排序否则：根据 ctime 排序</p>
+<p>-C 每栏由上至下列出项目</p>
+<p>–color[=WHEN] 控制是否使用色彩分辨文件。WHEN 可以是’never’、’always’或’auto’其中之一</p>
+<p>-d, –directory 将目录象文件一样显示，而不是显示其下的文件。</p>
+<p>-D, –dired 产生适合 Emacs 的 dired 模式使用的结果</p>
+<p>-f 对输出的文件不进行排序，-aU 选项生效，-lst 选项失效</p>
+<p>-g 类似 -l,但不列出所有者</p>
+<p>-G, –no-group 不列出任何有关组的信息</p>
+<p>-h, –human-readable 以容易理解的格式列出文件大小 (例如 1K 234M 2G)</p>
+<p>–si 类似 -h,但文件大小取 1000 的次方而不是 1024</p>
+<p>-H, –dereference-command-line 使用命令列中的符号链接指示的真正目的地</p>
+<p>–indicator-style=方式 指定在每个项目名称后加上指示符号&lt;方式&gt;：none (默认)，classify (-F)，file-type (-p)</p>
+<p>-i, –inode 印出每个文件的 inode 号</p>
+<p>-I, –ignore=样式 不印出任何符合 shell 万用字符&lt;样式&gt;的项目</p>
+<p>-k 即 –block-size=1K,以 k 字节的形式表示文件的大小。</p>
+<p>-l 除了文件名之外，还将文件的权限、所有者、文件大小等信息详细列出来。</p>
+<p>-L, –dereference 当显示符号链接的文件信息时，显示符号链接所指示的对象而并非符号链接本身的信息</p>
+<p>-m 所有项目以逗号分隔，并填满整行行宽</p>
+<p>-o 类似 -l,显示文件的除组信息外的详细信息。</p>
+<p>-r, –reverse 依相反次序排列</p>
+<p>-R, –recursive 同时列出所有子目录层</p>
+<p>&nbsp;</p>
+<p>-s, –size 以块大小为单位列出所有文件的大小</p>
+<p>-S 根据文件大小排序</p>
+<p>–sort=WORD 以下是可选用的 WORD 和它们代表的相应选项：</p>
+<p>extension -X status -c</p>
+<p>none -U time -t</p>
+<p>size -S atime -u</p>
+<p>time -t access -u</p>
+<p>version -v use -u</p>
+<p>-t 以文件修改时间排序</p>
+<p>-u 配合 -lt:显示访问时间而且依访问时间排序</p>
+<p>配合 -l:显示访问时间但根据名称排序</p>
+<p>否则：根据访问时间排序</p>
+<p>-U 不进行排序;依文件系统原有的次序列出项目</p>
+<p>-v 根据版本进行排序</p>
+<p>-w, –width=COLS 自行指定屏幕宽度而不使用目前的数值</p>
+<p>-x 逐行列出项目而不是逐栏列出</p>
+<p>-X 根据扩展名排序</p>
+<p>-1 每行只列出一个文件</p>
+<p>–help 显示此帮助信息并离开</p>
+<p>–version 显示版本信息并离开</p>
+<p>&nbsp;</p>
+<ol>
+  <li>常用范例：</li>
+</ol>
+<p>例一：列出/home/peidachang文件夹下的所有文件和目录的详细资料</p>
+<p>命令：ls -l -R /home/peidachang</p>
+<p>在使用 ls 命令时要注意命令的格式：在命令提示符后，首先是命令的关键字，接下来是命令参数，在命令参数之前要有一短横线“-”，所有的命令参数都有特定的作用，自己可以根据需要选用一个或者多个参数，在命令参数的后面是命令的操作对象。在以上这条命令“ ls -l -R /home/peidachang”中，“ls” 是命令关键字，“-l -R”是参数，“ /home/peidachang”是命令的操作对象。在这条命令中，使用到了两个参数，分别为“l”和“R”，当然，你也可以把他们放在一起使用，如下所示：</p>
+<p>命令：ls -lR /home/peidachang</p>
+<p>这种形式和上面的命令形式执行的结果是完全一样的。另外，如果命令的操作对象位于当前目录中，可以直接对操作对象进行操作;如果不在当前目录则需要给出操作对象的完整路径，例如上面的例子中，我的当前文件夹是peidachang文件夹，我想对home文件夹下的peidachang文件进行操作，我可以直接输入 ls -lR peidachang，也可以用 ls -lR /home/peidachang。</p>
+<p>例二：列出当前目录中所有以“t”开头的目录的详细内容，可以使用如下命令：</p>
+<p>命令：ls -l t*</p>
+<p>可以查看当前目录下文件名以“t”开头的所有文件的信息。其实，在命令格式中，方括号内的内容都是可以省略的，对于命令ls而言，如果省略命令参数和操作对象，直接输入“ ls ”，则将会列出当前工作目录的内容清单。</p>
+<p>例三：只列出文件下的子目录</p>
+<p>命令：ls -F /opt/soft |grep /$</p>
+<p>列出 /opt/soft 文件下面的子目录</p>
+<p>输出：</p>
+<p>[root@localhost opt]# ls -F /opt/soft |grep /$</p>
+<p>jdk1.6.0_16/</p>
+<p>subversion-1.6.1/</p>
+<p>tomcat6.0.32/</p>
+<p><strong>命令</strong>：ls -l /opt/soft | grep “^d”</p>
+<p>列出 /opt/soft 文件下面的子目录详细情况</p>
+<p><strong>输出</strong>：</p>
+<p>[root@localhost opt]# ls -l /opt/soft | grep “^d”</p>
+<p>drwxr-xr-x 10 root root 4096 09-17 18:17 jdk1.6.0_16</p>
+<p>drwxr-xr-x 16 1016 1016 4096 10-11 03:25 subversion-1.6.1</p>
+<p>drwxr-xr-x 9 root root 4096 2011-11-01 tomcat6.0.32</p>
+<p>例四：列出目前工作目录下所有名称是s 开头的档案，愈新的排愈后面，可以使用如下命令：</p>
+<p>命令：ls -ltr s*</p>
+<p><strong>输出</strong>：</p>
+<p>[root@localhost opt]# ls -ltr s*</p>
+<p>src:</p>
+<p>总计 0</p>
+<p>&nbsp;</p>
+<p>script:</p>
+<p>总计 0</p>
+<p>&nbsp;</p>
+<p>soft:</p>
+<p>总计 350644</p>
+<p>drwxr-xr-x 9 root root 4096 2011-11-01 tomcat6.0.32</p>
+<p>-rwxr-xr-x 1 root root 81871260 09-17 18:15 jdk-6u16-linux-x64.bin</p>
+<p>drwxr-xr-x 10 root root 4096 09-17 18:17 jdk1.6.0_16</p>
+<p>-rw-r–r– 1 root root 205831281 09-17 18:33 apache-tomcat-6.0.32.tar.gz</p>
+<p>-rw-r–r– 1 root root 5457684 09-21 00:23 tomcat6.0.32.tar.gz</p>
+<p>-rw-r–r– 1 root root 4726179 10-10 11:08 subversion-deps-1.6.1.tar.gz</p>
+<p>-rw-r–r– 1 root root 7501026 10-10 11:08 subversion-1.6.1.tar.gz</p>
+<p>drwxr-xr-x 16 1016 1016 4096 10-11 03:25 subversion-1.6.1</p>
+<p><strong>例五：列出目前工作目录下所有档案及目录;目录于名称后加”/“, 可执行档于名称后加”*” </strong></p>
+<p><strong>命令</strong>：ls -AF</p>
+<p><strong>输出</strong>：</p>
+<p>[root@localhost opt]# ls -AF</p>
+<p>log/ script/ soft/ src/ svndata/ web/</p>
+<p>例六：计算当前目录下的文件数和目录数</p>
+<p>命令：</p>
+<p>ls -l * |grep “^-“|wc -l —文件个数</p>
+<p>ls -l * |grep “^d”|wc -l —目录个数</p>
+<p>例七: 在ls中列出文件的绝对路径</p>
+<p>命令：ls | sed “s:^:<code>pwd</code>/:”</p>
+<p><strong>输出</strong>：</p>
+<p>[root@localhost opt]# ls | sed “s:^:<code>pwd</code>/:”</p>
+<p>/opt/log</p>
+<p>/opt/script</p>
+<p>/opt/soft</p>
+<p>/opt/src</p>
+<p>/opt/svndata</p>
+<p>/opt/web</p>
+<p>&nbsp;</p>
+<p>例九：列出当前目录下的所有文件（包括隐藏文件）的绝对路径， 对目录不做递归</p>
+<p>命令：find $PWD -maxdepth 1 | xargs ls -ld</p>
+<p>输出：</p>
+<p>[root@localhost opt]# find $PWD -maxdepth 1 | xargs ls -ld</p>
+<p>drwxr-xr-x 8 root root 4096 10-11 03:43 /opt</p>
+<p>drwxr-xr-x 2 root root 4096 2012-03-08 /opt/log</p>
+<p>drwxr-xr-x 2 root root 4096 2012-03-08 /opt/script</p>
+<p>drwxr-xr-x 5 root root 4096 10-11 03:21 /opt/soft</p>
+<p>drwxr-xr-x 2 root root 4096 2012-03-08 /opt/src</p>
+<p>drwxr-xr-x 4 root root 4096 10-11 05:22 /opt/svndata</p>
+<p>drwxr-xr-x 4 root root 4096 10-09 00:45 /opt/web</p>
+<p>例十：递归列出当前目录下的所有文件（包括隐藏文件）的绝对路径</p>
+<p>命令： find $PWD | xargs ls -ld</p>
+<p>&nbsp;</p>
+<p>例十一：指定文件时间输出格式</p>
+<p>命令：</p>
+<p>ls -tl –time-style=full-iso</p>
+<p>输出：</p>
+<p>[root@localhost soft]# ls -tl –time-style=full-iso</p>
+<p>总计 350644</p>
+<p>drwxr-xr-x 16 1016 1016 4096 2012-10-11 03:25:58.000000000 +0800 subversion-1.6.1</p>
+<p>&nbsp;</p>
+<p>ls -ctl –time-style=long-iso</p>
+<p>输出：</p>
+<p>[root@localhost soft]# ls -ctl –time-style=long-iso</p>
+<p>总计 350644</p>
+<p>drwxr-xr-x 16 1016 1016 4096 2012-10-11 03:25 subversion-1.6.1</p>
+<p>&nbsp;</p>
+<p>扩展：</p>
+<ol>
+  <li>显示彩色目录列表</li>
+</ol>
+<p>打开/etc/bashrc, 加入如下一行:</p>
+<p>alias ls=”ls –color”</p>
+<p>下次启动bash时就可以像在Slackware里那样显示彩色的目录列表了, 其中颜色的含义如下:</p>
+<ol>
+  <li>
+    <p>蓝色–&gt;目录</p>
+  </li>
+  <li>
+    <p>绿色–&gt;可执行文件</p>
+  </li>
+  <li>
+    <p>红色–&gt;压缩文件</p>
+  </li>
+  <li>
+    <p>浅蓝色–&gt;链接文件</p>
+  </li>
+  <li>
+    <p>灰色–&gt;其他文件</p>
+  </li>
+</ol>
+<p>本文发表自 <a href="http://post.zz173.com/detail/linux-e5-91-bd-e4-bb-a4-e4-b9-8bgrep-2.html">http://post.zz173.com/detail/linux-e5-91-bd-e4-bb-a4-e4-b9-8bgrep-2.html</a> 未经本人同意，禁止转载。</p>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/detail/linux-e5-91-bd-e4-bb-a4-e4-b9-8bgrep.html" rel="next" title="Linux命令之grep">
+                <i class="fa fa-chevron-left"></i> Linux命令之grep
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/detail/e8-90-bd-e6-9c-88-e5-88-87-e7-89-8c1-6-e5-8f-91-e5-b8-83-e5-95-a6.html" rel="prev" title="落月切牌1.6发布啦">
+                落月切牌1.6发布啦 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="251"
+           data-title="Linux命令之ls" data-url="http://post.zz173.com/detail/linux-e5-91-bd-e4-bb-a4-e4-b9-8bgrep-2.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/7907969"
+               alt="落月" />
+          <p class="site-author-name" itemprop="name">落月</p>
+          <p class="site-description motion-element" itemprop="description">不知乘月几人归，落月摇情满江树。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/index.html">
+              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2007 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">落月</span>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"blogx"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

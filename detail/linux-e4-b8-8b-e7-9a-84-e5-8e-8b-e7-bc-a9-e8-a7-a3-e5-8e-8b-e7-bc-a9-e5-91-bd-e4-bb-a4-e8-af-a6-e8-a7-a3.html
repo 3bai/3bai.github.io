@@ -1,0 +1,944 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="linux zip命令
+zip -r myfile.zip ./*将当前目录下的所有文件和文件夹全部压缩成myfile.zip文件,－r表示递归压缩子目录下所有文件.
+2.unzipunzip -o -d /home/sunny myfile.zip把myfile.zip文件解压到 /home/sunny/-o:不提示的情况下覆盖文件；-d:-d /home/sunny 指明将文件解压缩到/hom">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux下的压缩解压缩命令详解">
+<meta property="og:url" content="http://post.zz173.com/detail/linux-e4-b8-8b-e7-9a-84-e5-8e-8b-e7-bc-a9-e8-a7-a3-e5-8e-8b-e7-bc-a9-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3.html">
+<meta property="og:site_name" content="青枫浦">
+<meta property="og:description" content="linux zip命令
+zip -r myfile.zip ./*将当前目录下的所有文件和文件夹全部压缩成myfile.zip文件,－r表示递归压缩子目录下所有文件.
+2.unzipunzip -o -d /home/sunny myfile.zip把myfile.zip文件解压到 /home/sunny/-o:不提示的情况下覆盖文件；-d:-d /home/sunny 指明将文件解压缩到/hom">
+<meta property="og:updated_time" content="2016-05-16T05:03:05.136Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux下的压缩解压缩命令详解">
+<meta name="twitter:description" content="linux zip命令
+zip -r myfile.zip ./*将当前目录下的所有文件和文件夹全部压缩成myfile.zip文件,－r表示递归压缩子目录下所有文件.
+2.unzipunzip -o -d /home/sunny myfile.zip把myfile.zip文件解压到 /home/sunny/-o:不提示的情况下覆盖文件；-d:-d /home/sunny 指明将文件解压缩到/hom">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 2664337,
+      author: '<i class="fa fa-vimeo"></i>'
+    }
+  };
+</script>
+
+  <title> Linux下的压缩解压缩命令详解 | 青枫浦 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">青枫浦</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">落月博客post.zz173.com</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux下的压缩解压缩命令详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-01-03T13:31:30+08:00" content="2014-01-03">
+              2014-01-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计/" itemprop="url" rel="index">
+                    <span itemprop="name">设计</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/detail/linux-e4-b8-8b-e7-9a-84-e5-8e-8b-e7-bc-a9-e8-a7-a3-e5-8e-8b-e7-bc-a9-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="98" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>linux zip命令</strong></p>
+<p>zip -r myfile.zip ./*<br>将当前目录下的所有文件和文件夹全部压缩成myfile.zip文件,－r表示递归压缩子目录下所有文件.</p>
+<p>2.unzip<br>unzip -o -d /home/sunny myfile.zip<br>把myfile.zip文件解压到 /home/sunny/<br>-o:不提示的情况下覆盖文件；<br>-d:-d /home/sunny 指明将文件解压缩到/home/sunny目录下；</p>
+<p>3.其他<br>zip -d myfile.zip smart.txt<br>删除压缩文件中smart.txt文件<br>zip -m myfile.zip ./rpm_info.txt</p>
+<h2 id="向压缩文件中myfile-zip中添加rpm-info-txt文件"><a href="#向压缩文件中myfile-zip中添加rpm-info-txt文件" class="headerlink" title="向压缩文件中myfile.zip中添加rpm_info.txt文件"></a>向压缩文件中myfile.zip中添加rpm_info.txt文件</h2>
+<p>要使用 zip 来压缩文件，在 shell 提示下键入下面的命令：</p>
+<p>zip -r filename.zip filesdir<br>在这个例子里，filename.zip 代表你创建的文件，filesdir 代表你想放置新 zip 文件的目录。-r 选项指定你想递归地（recursively）包括所有包括在 filesdir 目录中的文件。</p>
+<p>要抽取 zip 文件的内容，键入以下命令：</p>
+<p>unzip filename.zip<br>你可以使用 zip 命令同时处理多个文件和目录，方法是将它们逐一列出，并用空格间隔：</p>
+<p>zip -r filename.zip file1 file2 file3 /usr/work/school<br>上面的命令把 file1、file2、 file3、以及 /usr/work/school 目录的内容（假设这个目录存在）压缩起来，然后放入 filename.zip 文件中。</p>
+<p>&nbsp;</p>
+<p><strong>tar 命令详解</strong></p>
+<p>-c: 建立压缩档案</p>
+<p>-x：解压</p>
+<p>-t：查看内容</p>
+<p>-r：向压缩归档文件末尾追加文件</p>
+<p>-u：更新原压缩包中的文件</p>
+<p>这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。</p>
+<p>-c: 建立压缩档案</p>
+<p>-x：解压</p>
+<p>-t：查看内容</p>
+<p>-r：向压缩归档文件末尾追加文件</p>
+<p>-u：更新原压缩包中的文件</p>
+<p>下面的参数-f是必须的</p>
+<p>-f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。</p>
+<h1 id="tar-cf-all-tar-jpg"><a href="#tar-cf-all-tar-jpg" class="headerlink" title="tar -cf all.tar *.jpg"></a>tar -cf all.tar *.jpg</h1>
+<p>这条命令是将所有.jpg的文件打成一个名为all.tar的包。-c是表示产生新的包，-f指定包的文件名。</p>
+<h1 id="tar-rf-all-tar-gif"><a href="#tar-rf-all-tar-gif" class="headerlink" title="tar -rf all.tar *.gif"></a>tar -rf all.tar *.gif</h1>
+<p>这条命令是将所有.gif的文件增加到all.tar的包里面去。-r是表示增加文件的意思。</p>
+<h1 id="tar-uf-all-tar-logo-gif"><a href="#tar-uf-all-tar-logo-gif" class="headerlink" title="tar -uf all.tar logo.gif"></a>tar -uf all.tar logo.gif</h1>
+<p>这条命令是更新原来tar包all.tar中logo.gif文件，-u是表示更新文件的意思。</p>
+<h1 id="tar-tf-all-tar"><a href="#tar-tf-all-tar" class="headerlink" title="tar -tf all.tar"></a>tar -tf all.tar</h1>
+<p>这条命令是列出all.tar包中所有文件，-t是列出文件的意思</p>
+<h1 id="tar-xf-all-tar"><a href="#tar-xf-all-tar" class="headerlink" title="tar -xf all.tar"></a>tar -xf all.tar</h1>
+<p>这条命令是解出all.tar包中所有文件，-t是解开的意思</p>
+<p>压缩</p>
+<p>tar –cvf jpg.tar *.jpg //将目录里所有jpg文件打包成tar.jpg</p>
+<p>tar –czf jpg.tar.gz *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz</p>
+<p>tar –cjf jpg.tar.bz2 *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2</p>
+<p>tar –cZf jpg.tar.Z *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z</p>
+<p>rar a jpg.rar *.jpg //rar格式的压缩，需要先下载rar for linux</p>
+<p>zip jpg.zip *.jpg //zip格式的压缩，需要先下载zip for linux</p>
+<p>解压</p>
+<p>tar –xvf file.tar //解压 tar包</p>
+<p>tar -xzvf file.tar.gz //解压tar.gz</p>
+<p>tar -xjvf file.tar.bz2 //解压 tar.bz2</p>
+<p>tar –xZvf file.tar.Z //解压tar.Z</p>
+<p>unrar e file.rar //解压rar</p>
+<p>unzip file.zip //解压zip</p>
+<p>总结</p>
+<p>1、*.tar 用 tar –xvf 解压</p>
+<p>2、*.gz 用 gzip -d或者gunzip 解压</p>
+<p>3、<em>.tar.gz和</em>.tgz 用 tar –xzf 解压</p>
+<p>4、*.bz2 用 bzip2 -d或者用bunzip2 解压</p>
+<p>5、*.tar.bz2用tar –xjf 解压</p>
+<p>6、*.Z 用 uncompress 解压</p>
+<p>7、*.tar.Z 用tar –xZf 解压</p>
+<p>8、*.rar 用 unrar e解压</p>
+<p>9、*.zip 用 unzip 解压</p>
+<p>Linux中tar命令详解(转载的资料)</p>
+<p>2008年04月17日 星期四 15:37</p>
+<p>tar命令</p>
+<p>tar 可以为文件和目录创建档案。利用tar，用户可以为某一特定文件创建档案(备份文件)，也可以在档案中改变文件，或者向档案中加入新的文件。tar最初被 用来在磁带上创建档案，现在，用户可以在任何设备上创建档案，如软盘。利用tar命令，可以把一大堆的文件和目录全部打包成一个文件，这对于备份文件或将 几个文件组合成为一个文件以便于网络传输是非常有用的。Linux上的tar是GNU版本的。</p>
+<p>语法：tar [主选项+辅选项] 文件或者目录</p>
+<p>使用该命令时，主选项是必须要有的，它告诉tar要做什么事情，辅选项是辅助使用的，可以选用。</p>
+<p>主选项：</p>
+<p>c 创建新的档案文件。如果用户想备份一个目录或是一些文件，就要选择这个选项。</p>
+<p>r 把要存档的文件追加到档案文件的未尾。例如用户已经作好备份文件，又发现还有一个目录或是一些文件忘记备份了，这时可以使用该选项，将忘记的目录或文件追加到备份文件中。</p>
+<p>t 列出档案文件的内容，查看已经备份了哪些文件。</p>
+<p>u 更新文件。就是说，用新增的文件取代原备份文件，如果在备份文件中找不到要更新的文件，则把它追加到备份文件的最后。</p>
+<p>x 从档案文件中释放文件。</p>
+<p>辅助选项：</p>
+<p>b 该选项是为磁带机设定的。其后跟一数字，用来说明区块的大小，系统预设值为20(20*512 bytes)。</p>
+<p>f 使用档案文件或设备，这个选项通常是必选的。</p>
+<p>k 保存已经存在的文件。例如我们把某个文件还原，在还原的过程中，遇到相同的文件，不会进行覆盖。</p>
+<p>m 在还原文件时，把所有文件的修改时间设定为现在。</p>
+<p>M 创建多卷的档案文件，以便在几个磁盘中存放。</p>
+<p>v 详细报告tar处理的文件信息。如无此选项，tar不报告文件信息。</p>
+<p>w 每一步都要求确认。</p>
+<p>z 用gzip来压缩/解压缩文件，加上该选项后可以将档案文件进行压缩，但还原时也一定要使用该选项进行解压缩。</p>
+<p>Linux下的压缩文件剖析</p>
+<p>对于刚刚接触Linux的人来说，一定会给Linux下一大堆各式各样的文件名给搞晕。别个不说，单单就压缩文件为例，我们知道在 Windows下最常见 的压缩文件就只有两种，一是,zip，另一个是.rap。可是Linux就不同了，它有.gz、.tar.gz、tgz、bz2、.Z、.tar等众多的 压缩文件名，此外windows下的.zip和.rar也可以在Linux下使用，不过在Linux使用.zip和.rar的人就太少了。本文就来对这些 常见的压缩文件进行一番小结，希望你下次遇到这些文件时不至于被搞晕。</p>
+<p>在具体总结各类压缩文件之前呢，首先要弄清两个概念：打包和压缩。打包是指将一大堆文件或目录什么的变成一个总的文件，压缩则是将一个大的文件 通过一些压 缩算法变成一个小文件。为什么要区分这两个概念呢?其实这源于Linux中的很多压缩程序只能针对一个文件进行压缩，这样当你想要压缩一大堆文件时，你就 得先借助另它的工具将这一大堆文件先打成一个包，然后再就原来的压缩程序进行压缩。</p>
+<p>Linux下最常用的打包程序就是tar了，使用tar程序打出来的包我们常称为tar包，tar包文件的命令通常都是以.tar结尾的。生成tar包后，就可以用其它的程序来进行压缩了，所以首先就来讲讲tar命令的基本用法：</p>
+<p>tar命令的选项有很多(用man tar可以查看到)，但常用的就那么几个选项，下面来举例说明一下：</p>
+<h1 id="tar-cf-all-tar-jpg-1"><a href="#tar-cf-all-tar-jpg-1" class="headerlink" title="tar -cf all.tar *.jpg"></a>tar -cf all.tar *.jpg</h1>
+<p>这条命令是将所有.jpg的文件打成一个名为all.tar的包。-c是表示产生新的包，-f指定包的文件名。</p>
+<h1 id="tar-rf-all-tar-gif-1"><a href="#tar-rf-all-tar-gif-1" class="headerlink" title="tar -rf all.tar *.gif"></a>tar -rf all.tar *.gif</h1>
+<p>这条命令是将所有.gif的文件增加到all.tar的包里面去。-r是表示增加文件的意思。</p>
+<h1 id="tar-uf-all-tar-logo-gif-1"><a href="#tar-uf-all-tar-logo-gif-1" class="headerlink" title="tar -uf all.tar logo.gif"></a>tar -uf all.tar logo.gif</h1>
+<p>这条命令是更新原来tar包all.tar中logo.gif文件，-u是表示更新文件的意思。</p>
+<h1 id="tar-tf-all-tar-1"><a href="#tar-tf-all-tar-1" class="headerlink" title="tar -tf all.tar"></a>tar -tf all.tar</h1>
+<p>这条命令是列出all.tar包中所有文件，-t是列出文件的意思</p>
+<h1 id="tar-xf-all-tar-1"><a href="#tar-xf-all-tar-1" class="headerlink" title="tar -xf all.tar"></a>tar -xf all.tar</h1>
+<p>这条命令是解出all.tar包中所有文件，-t是解开的意思</p>
+<p>以上就是tar的最基本的用法。为了方便用户在打包解包的同时可以压缩或解压文件，tar提供了一种特殊的功能。这就是tar可以在打包或解包的同时调用其它的压缩程序，比如调用gzip、bzip2等。</p>
+<p>1) tar调用gzip</p>
+<p>gzip是GNU组织开发的一个压缩程序，.gz结尾的文件就是gzip压缩的结果。与gzip相对的解压程序是gunzip。tar中使用-z这个参数来调用gzip。下面来举例说明一下：</p>
+<h1 id="tar-czf-all-tar-gz-jpg"><a href="#tar-czf-all-tar-gz-jpg" class="headerlink" title="tar -czf all.tar.gz *.jpg"></a>tar -czf all.tar.gz *.jpg</h1>
+<p>这条命令是将所有.jpg的文件打成一个tar包，并且将其用gzip压缩，生成一个gzip压缩过的包，包名为all.tar.gz</p>
+<h1 id="tar-xzf-all-tar-gz"><a href="#tar-xzf-all-tar-gz" class="headerlink" title="tar -xzf all.tar.gz"></a>tar -xzf all.tar.gz</h1>
+<p>这条命令是将上面产生的包解开。</p>
+<p>2) tar调用bzip2</p>
+<p>bzip2是一个压缩能力更强的压缩程序，.bz2结尾的文件就是bzip2压缩的结果。与bzip2相对的解压程序是bunzip2。tar中使用-j这个参数来调用gzip。下面来举例说明一下：</p>
+<h1 id="tar-cjf-all-tar-bz2-jpg"><a href="#tar-cjf-all-tar-bz2-jpg" class="headerlink" title="tar -cjf all.tar.bz2 *.jpg"></a>tar -cjf all.tar.bz2 *.jpg</h1>
+<p>这条命令是将所有.jpg的文件打成一个tar包，并且将其用bzip2压缩，生成一个bzip2压缩过的包，包名为all.tar.bz2</p>
+<h1 id="tar-xjf-all-tar-bz2"><a href="#tar-xjf-all-tar-bz2" class="headerlink" title="tar -xjf all.tar.bz2"></a>tar -xjf all.tar.bz2</h1>
+<p>这条命令是将上面产生的包解开。</p>
+<p>3)tar调用compress</p>
+<p>compress也是一个压缩程序，但是好象使用compress的人不如gzip和bzip2的人多。.Z结尾的文件就是bzip2压缩的结 果。与 compress相对的解压程序是uncompress。tar中使用-Z这个参数来调用gzip。下面来举例说明一下：</p>
+<h1 id="tar-cZf-all-tar-Z-jpg"><a href="#tar-cZf-all-tar-Z-jpg" class="headerlink" title="tar -cZf all.tar.Z *.jpg"></a>tar -cZf all.tar.Z *.jpg</h1>
+<p>这条命令是将所有.jpg的文件打成一个tar包，并且将其用compress压缩，生成一个uncompress压缩过的包，包名为all.tar.Z</p>
+<h1 id="tar-xZf-all-tar-Z"><a href="#tar-xZf-all-tar-Z" class="headerlink" title="tar -xZf all.tar.Z"></a>tar -xZf all.tar.Z</h1>
+<p>这条命令是将上面产生的包解开</p>
+<p>有了上面的知识，你应该可以解开多种压缩文件了，下面对于tar系列的压缩文件作一个小结：</p>
+<p>1)对于.tar结尾的文件</p>
+<p>tar -xf all.tar</p>
+<p>2)对于.gz结尾的文件</p>
+<p>gzip -d all.gz</p>
+<p>gunzip all.gz</p>
+<p>3)对于.tgz或.tar.gz结尾的文件</p>
+<p>tar -xzf all.tar.gz</p>
+<p>tar -xzf all.tgz</p>
+<p>4)对于.bz2结尾的文件</p>
+<p>bzip2 -d all.bz2</p>
+<p>bunzip2 all.bz2</p>
+<p>5)对于tar.bz2结尾的文件</p>
+<p>tar -xjf all.tar.bz2</p>
+<p>6)对于.Z结尾的文件</p>
+<p>uncompress all.Z</p>
+<p>7)对于.tar.Z结尾的文件</p>
+<p>tar -xZf all.tar.z</p>
+<p>另外对于Window下的常见压缩文件.zip和.rar，Linux也有相应的方法来解压它们：</p>
+<p>1)对于.zip</p>
+<p>linux下提供了zip和unzip程序，zip是压缩程序，unzip是解压程序。它们的参数选项很多，这里只做简单介绍，依旧举例说明一下其用法：</p>
+<h1 id="zip-all-zip-jpg"><a href="#zip-all-zip-jpg" class="headerlink" title="zip all.zip *.jpg"></a>zip all.zip *.jpg</h1>
+<p>这条命令是将所有.jpg的文件压缩成一个zip包</p>
+<h1 id="unzip-all-zip"><a href="#unzip-all-zip" class="headerlink" title="unzip all.zip"></a>unzip all.zip</h1>
+<p>这条命令是将all.zip中的所有文件解压出来</p>
+<p>2)对于.rar</p>
+<p>要在linux下处理.rar文件，需要安装RAR for Linux，可以从网上下载，但要记住，RAR for Linux</p>
+<p>不是免费的;然后安装：</p>
+<h1 id="tar-xzpvf-rarlinux-3-2-0-tar-gz"><a href="#tar-xzpvf-rarlinux-3-2-0-tar-gz" class="headerlink" title="tar -xzpvf rarlinux-3.2.0.tar.gz"></a>tar -xzpvf rarlinux-3.2.0.tar.gz</h1>
+<h1 id="cd-rar"><a href="#cd-rar" class="headerlink" title="cd rar"></a>cd rar</h1>
+<h1 id="make"><a href="#make" class="headerlink" title="make"></a>make</h1>
+<p>这样就安装好了，安装后就有了rar和unrar这两个程序，rar是压缩程序，unrar是解压程序。它们的参数选项很多，这里只做简单介绍，依旧举例说明一下其用法：</p>
+<h1 id="rar-a-all-jpg"><a href="#rar-a-all-jpg" class="headerlink" title="rar a all *.jpg"></a>rar a all *.jpg</h1>
+<p>这条命令是将所有.jpg的文件压缩成一个rar包，名为all.rar，该程序会将.rar 扩展名将自动附加到包名后。</p>
+<h1 id="unrar-e-all-rar"><a href="#unrar-e-all-rar" class="headerlink" title="unrar e all.rar"></a>unrar e all.rar</h1>
+<p>这条命令是将all.rar中的所有文件解压出来</p>
+<p>到此为至，我们已经介绍过linux下的tar、gzip、gunzip、bzip2、bunzip2、compress、 uncompress、 zip、unzip、rar、unrar等程式，你应该已经能够使用它们对.tar、.gz、.tar.gz、.tgz、.bz2、.tar.bz2、. Z、.tar.Z、.zip、.rar这10种压缩文件进行解压了，以后应该不需要为下载了一个软件而不知道如何在Linux下解开而烦恼了。而且以上方 法对于Unix也基本有效。</p>
+<p>本文介绍了linux下的压缩程式tar、gzip、gunzip、bzip2、bunzip2、 compress、uncompress、zip、unzip、rar、unrar等程式，以及如何使用它们对.tar、.gz、.tar.gz、. tgz、.bz2、.tar.bz2、.Z、.tar.Z、.zip、.rar这10种压缩文件进行操作</p>
+<p>本文发表自 <a href="http://post.zz173.com/detail/linux-e4-b8-8b-e7-9a-84-e5-8e-8b-e7-bc-a9-e8-a7-a3-e5-8e-8b-e7-bc-a9-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3.html">http://post.zz173.com/detail/linux-e4-b8-8b-e7-9a-84-e5-8e-8b-e7-bc-a9-e8-a7-a3-e5-8e-8b-e7-bc-a9-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3.html</a>  未经本人同意，禁止转载。</p>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/detail/centos-e5-ae-89-e8-a3-85-e5-92-8c-e9-85-8d-e7-bd-aeapache-e3-80-81php.html" rel="next" title="centOS安装和配置apache、php">
+                <i class="fa fa-chevron-left"></i> centOS安装和配置apache、php
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/detail/xshell-4xftp4xmanager-e6-b3-a8-e5-86-8c-e7-a0-81.html" rel="prev" title="Xshell 4,Xftp4,Xmanager注册码">
+                Xshell 4,Xftp4,Xmanager注册码 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="98"
+           data-title="Linux下的压缩解压缩命令详解" data-url="http://post.zz173.com/detail/linux-e4-b8-8b-e7-9a-84-e5-8e-8b-e7-bc-a9-e8-a7-a3-e5-8e-8b-e7-bc-a9-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/7907969"
+               alt="落月" />
+          <p class="site-author-name" itemprop="name">落月</p>
+          <p class="site-description motion-element" itemprop="description">不知乘月几人归，落月摇情满江树。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/index.html">
+              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#向压缩文件中myfile-zip中添加rpm-info-txt文件"><span class="nav-number">1.</span> <span class="nav-text">向压缩文件中myfile.zip中添加rpm_info.txt文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-cf-all-tar-jpg"><span class="nav-number"></span> <span class="nav-text">tar -cf all.tar *.jpg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-rf-all-tar-gif"><span class="nav-number"></span> <span class="nav-text">tar -rf all.tar *.gif</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-uf-all-tar-logo-gif"><span class="nav-number"></span> <span class="nav-text">tar -uf all.tar logo.gif</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-tf-all-tar"><span class="nav-number"></span> <span class="nav-text">tar -tf all.tar</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-xf-all-tar"><span class="nav-number"></span> <span class="nav-text">tar -xf all.tar</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-cf-all-tar-jpg-1"><span class="nav-number"></span> <span class="nav-text">tar -cf all.tar *.jpg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-rf-all-tar-gif-1"><span class="nav-number"></span> <span class="nav-text">tar -rf all.tar *.gif</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-uf-all-tar-logo-gif-1"><span class="nav-number"></span> <span class="nav-text">tar -uf all.tar logo.gif</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-tf-all-tar-1"><span class="nav-number"></span> <span class="nav-text">tar -tf all.tar</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-xf-all-tar-1"><span class="nav-number"></span> <span class="nav-text">tar -xf all.tar</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-czf-all-tar-gz-jpg"><span class="nav-number"></span> <span class="nav-text">tar -czf all.tar.gz *.jpg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-xzf-all-tar-gz"><span class="nav-number"></span> <span class="nav-text">tar -xzf all.tar.gz</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-cjf-all-tar-bz2-jpg"><span class="nav-number"></span> <span class="nav-text">tar -cjf all.tar.bz2 *.jpg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-xjf-all-tar-bz2"><span class="nav-number"></span> <span class="nav-text">tar -xjf all.tar.bz2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-cZf-all-tar-Z-jpg"><span class="nav-number"></span> <span class="nav-text">tar -cZf all.tar.Z *.jpg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-xZf-all-tar-Z"><span class="nav-number"></span> <span class="nav-text">tar -xZf all.tar.Z</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zip-all-zip-jpg"><span class="nav-number"></span> <span class="nav-text">zip all.zip *.jpg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unzip-all-zip"><span class="nav-number"></span> <span class="nav-text">unzip all.zip</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-xzpvf-rarlinux-3-2-0-tar-gz"><span class="nav-number"></span> <span class="nav-text">tar -xzpvf rarlinux-3.2.0.tar.gz</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cd-rar"><span class="nav-number"></span> <span class="nav-text">cd rar</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#make"><span class="nav-number"></span> <span class="nav-text">make</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rar-a-all-jpg"><span class="nav-number"></span> <span class="nav-text">rar a all *.jpg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unrar-e-all-rar"><span class="nav-number"></span> <span class="nav-text">unrar e all.rar</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2007 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">落月</span>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"blogx"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

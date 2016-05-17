@@ -1,0 +1,978 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="截至目前(2014.2), PHP 的最新稳定版本是 PHP5.5, 但有差不多一半的用户仍在使用已经不在维护 [注] 的 PHP5.2, 其余的一半用户在使用 PHP5.3 [注].因为 PHP 那“集百家之长”的蛋疼语法，加上社区氛围不好，很多人对新版本，新特征并无兴趣。本文将会介绍自 PHP5.2 起，直至 PHP5.6 中增加的新特征。
+PHP5.2 以前：autoload, PDO 和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP 自 5.2 到 5.6 中新增的功能详解">
+<meta property="og:url" content="http://post.zz173.com/detail/php-e8-87-aa-5-2-e5-88-b0-5-6-e4-b8-ad-e6-96-b0-e5-a2-9e-e7-9a-84-e5-8a-9f-e8-83-bd-e8-af-a6-e8-a7-a3.html">
+<meta property="og:site_name" content="青枫浦">
+<meta property="og:description" content="截至目前(2014.2), PHP 的最新稳定版本是 PHP5.5, 但有差不多一半的用户仍在使用已经不在维护 [注] 的 PHP5.2, 其余的一半用户在使用 PHP5.3 [注].因为 PHP 那“集百家之长”的蛋疼语法，加上社区氛围不好，很多人对新版本，新特征并无兴趣。本文将会介绍自 PHP5.2 起，直至 PHP5.6 中增加的新特征。
+PHP5.2 以前：autoload, PDO 和">
+<meta property="og:updated_time" content="2016-05-16T05:03:05.144Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP 自 5.2 到 5.6 中新增的功能详解">
+<meta name="twitter:description" content="截至目前(2014.2), PHP 的最新稳定版本是 PHP5.5, 但有差不多一半的用户仍在使用已经不在维护 [注] 的 PHP5.2, 其余的一半用户在使用 PHP5.3 [注].因为 PHP 那“集百家之长”的蛋疼语法，加上社区氛围不好，很多人对新版本，新特征并无兴趣。本文将会介绍自 PHP5.2 起，直至 PHP5.6 中增加的新特征。
+PHP5.2 以前：autoload, PDO 和">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 2664337,
+      author: '<i class="fa fa-vimeo"></i>'
+    }
+  };
+</script>
+
+  <title> PHP 自 5.2 到 5.6 中新增的功能详解 | 青枫浦 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">青枫浦</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">落月博客post.zz173.com</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                PHP 自 5.2 到 5.6 中新增的功能详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-05-17T09:22:56+08:00" content="2014-05-17">
+              2014-05-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计/" itemprop="url" rel="index">
+                    <span itemprop="name">设计</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/detail/php-e8-87-aa-5-2-e5-88-b0-5-6-e4-b8-ad-e6-96-b0-e5-a2-9e-e7-9a-84-e5-8a-9f-e8-83-bd-e8-af-a6-e8-a7-a3.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="133" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>截至目前(2014.2), PHP 的最新稳定版本是 PHP5.5, 但有差不多一半的用户仍在使用已经不在维护 [注] 的 PHP5.2, 其余的一半用户在使用 PHP5.3 [注].<br>因为 PHP 那“集百家之长”的蛋疼语法，加上社区氛围不好，很多人对新版本，新特征并无兴趣。<br>本文将会介绍自 PHP5.2 起，直至 PHP5.6 中增加的新特征。</p>
+<p>PHP5.2 以前：autoload, PDO 和 MySQLi, 类型约束<br>PHP5.2：JSON 支持<br>PHP5.3：弃用的功能，匿名函数，新增魔术方法，命名空间，后期静态绑定，Heredoc 和 Nowdoc, const, 三元运算符，Phar<br>PHP5.4：Short Open Tag, 数组简写形式，Traits, 内置 Web 服务器，细节修改<br>PHP5.5：yield, list() 用于 foreach, 细节修改<br>PHP5.6: 常量增强，可变函数参数，命名空间增强<br>注：已于2011年1月停止支持：
+  <a href="http://www.php.net/eol.php" target="_blank" rel="external">http://www.php.net/eol.php</a><br>注：<a href="http://w3techs.com/technologies/details/pl-php/5/all" target="_blank" rel="external">http://w3techs.com/technologies/details/pl-php/5/all</a></p>
+<p>PHP5.2以前</p>
+<p>(2006前)<br>顺便介绍一下 PHP5.2 已经出现但值得介绍的特征。</p>
+<p>autoload</p>
+<p>大家可能都知道 __autoload() 函数，如果定义了该函数，那么当在代码中使用一个未定义的类的时候，该函数就会被调用，你可以在该函数中加载相应的类实现文件，如：</p>
+<p>function <strong>autoload($classname)<br>{<br>    require_once(“{$classname}.php”)<br>}<br>但该函数已经不被建议使用，原因是一个项目中仅能有一个这样的 </strong>autoload() 函数，因为 PHP 不允许函数重名。但当你使用一些类库的时候，难免会出现多个 autoload 函数的需要，于是 spl_autoload_register() 取而代之：</p>
+<p>spl_autoload_register(function($classname)<br>{<br> require_once(“{$classname}.php”)<br>});<br>spl_autoload_register() 会将一个函数注册到 autoload 函数列表中，当出现未定义的类的时候，SPL [注] 会按照注册的倒序逐个调用被注册的 autoload 函数，这意味着你可以使用 spl_autoload_register() 注册多个 autoload 函数.</p>
+<p>注：SPL: Standard PHP Library, 标准 PHP 库, 被设计用来解决一些经典问题(如数据结构).</p>
+<p>PDO 和 MySQLi</p>
+<p>即 PHP Data Object, PHP 数据对象，这是 PHP 的新式数据库访问接口。</p>
+<p>按照传统的风格，访问 MySQL 数据库应该是这样子：</p>
+<p>// 连接到服务器，选择数据库<br>$conn = mysql_connect(“localhost”, “user”, “password”);<br>mysql_select_db(“database”);</p>
+<p>// 执行 SQL 查询<br>$type = $_POST[‘type’];<br>$sql = “SELECT * FROM <code>table</code> WHERE <code>type</code> = {$type}”;<br>$result = mysql_query($sql);</p>
+<p>// 打印结果<br>while($row = mysql_fetch_array($result, MYSQL_ASSOC))<br>{<br> foreach($row as $k =&gt; $v)<br> print “{$k}: {$v}\n”;<br>}</p>
+<p>// 释放结果集，关闭连接<br>mysql_free_result($result);<br>mysql_close($conn);<br>为了能够让代码实现数据库无关，即一段代码同时适用于多种数据库(例如以上代码仅仅适用于MySQL)，PHP 官方设计了 PDO.<br>除此之外，PDO 还提供了更多功能，比如：</p>
+<p>面向对象风格的接口<br>SQL预编译(prepare), 占位符语法<br>更高的执行效率，作为官方推荐，有特别的性能优化<br>支持大部分SQL数据库，更换数据库无需改动代码<br>上面的代码用 PDO 实现将会是这样：</p>
+<p>// 连接到数据库<br>$conn = new PDO(“mysql:host=localhost;dbname=database”, “user”, “password”);</p>
+<p>// 预编译SQL, 绑定参数<br>$query = $conn-&gt;prepare(“SELECT * FROM <code>table</code> WHERE <code>type</code> = :type”);<br>$query-&gt;bindParam(“type”, $_POST[‘type’]);</p>
+<p>// 执行查询并打印结果<br>foreach($query-&gt;execute() as $row)<br>{<br> foreach($row as $k =&gt; $v)<br> print “{$k}: {$v}\n”;<br>}<br>PDO 是官方推荐的，更为通用的数据库访问方式，如果你没有特殊需求，那么你最好学习和使用 PDO.<br>但如果你需要使用 MySQL 所特有的高级功能，那么你可能需要尝试一下 MySQLi, 因为 PDO 为了能够同时在多种数据库上使用，不会包含那些
+  MySQL 独有的功能。</p>
+<p>MySQLi 是 MySQL 的增强接口，同时提供面向过程和面向对象接口，也是目前推荐的 MySQL 驱动，旧的C风格 MySQL 接口将会在今后被默认关闭。<br>MySQLi 的用法和以上两段代码相比，没有太多新概念，在此不再给出示例，可以参见 PHP 官网文档 [注]。</p>
+<p>注：<a href="http://www.php.net/manual/en/mysqli.quickstart.php" target="_blank" rel="external">http://www.php.net/manual/en/mysqli.quickstart.php</a></p>
+<p>类型约束</p>
+<p>通过类型约束可以限制参数的类型，不过这一机制并不完善，目前仅适用于类和 callable(可执行类型) 以及 array(数组), 不适用于 string 和 int.</p>
+<p>// 限制第一个参数为 MyClass, 第二个参数为可执行类型，第三个参数为数组<br>function MyFunction(MyClass $a, callable $b, array $c)<br>{<br> // …<br>}<br>PHP5.2</p>
+<p>(2006-2011)</p>
+<p>JSON 支持</p>
+<p>包括 json_encode(), json_decode() 等函数，JSON 算是在 Web 领域非常常用的数据交换格式，可以被 JS 直接支持，JSON 实际上是 JS 语法的一部分。<br>JSON 系列函数，可以将 PHP 中的数组结构与 JSON 字符串进行转换：</p>
+<p>$array = [“key” =&gt; “value”, “array” =&gt; [1, 2, 3, 4]];<br>$json = json_encode($array);<br>echo “{$json}\n”;</p>
+<p>$object = json_decode($json);<br>print_r($object);<br>输出：</p>
+<p>{“key”:”value”,”array”:[1,2,3,4]}<br>stdClass Object<br>(<br> [key] =&gt; value<br> [array] =&gt; Array<br> (<br> [0] =&gt; 1<br> [1] =&gt; 2<br> [2] =&gt; 3<br> [3] =&gt; 4<br> )<br>)<br>值得注意的是 json_decode() 默认会返回一个对象而非数组，如果需要返回数组需要将第二个参数设置为 true.</p>
+<p>PHP5.3</p>
+<p>(2009-2012)</p>
+<p>PHP5.3 算是一个非常大的更新，新增了大量新特征，同时也做了一些不向下兼容的修改。</p>
+<p>弃用的功能</p>
+<p>以下几个功能被弃用，若在配置文件中启用，则 PHP 会在运行时发出警告。</p>
+<p>Register Globals</p>
+<p>这是 php.ini 中的一个选项(register_globals), 开启后会将所有表单变量($_GET和$_POST)注册为全局变量.<br>看下面的例子：</p>
+<p>if(isAuth())<br> $authorized = true;<br>if($authorized)<br> include(“page.php”);<br>这段代码在通过验证时，将 $authorized 设置为 true. 然后根据 $authorized 的值来决定是否显示页面.</p>
+<p>但由于并没有事先把 $authorized 初始化为 false, 当 register_globals 打开时，可能访问 /auth.php?authorized=1 来定义该变量值，绕过身份验证。</p>
+<p>该特征属于历史遗留问题，在 PHP4.2 中被默认关闭，在 PHP5.4 中被移除。</p>
+<p>Magic Quotes</p>
+<p>对应 php.ini 中的选项 magic_quotes_gpc, 这个特征同样属于历史遗留问题，已经在 PHP5.4 中移除。</p>
+<p>该特征会将所有用户输入进行转义，这看上去不错，在第一章我们提到过要对用户输入进行转义。<br>但是 PHP 并不知道哪些输入会进入 SQL , 哪些输入会进入 Shell, 哪些输入会被显示为 HTML, 所以很多时候这种转义会引起混乱。</p>
+<p>Safe Mode</p>
+<p>很多虚拟主机提供商使用 Safe Mode 来隔离多个用户，但 Safe Mode 存在诸多问题，例如某些扩展并不按照 Safe Mode 来进行权限控制。<br>PHP官方推荐使用操作系统的机制来进行权限隔离，让Web服务器以不同的用户权限来运行PHP解释器，请参见第一章中的最小权限原则.</p>
+<p>匿名函数</p>
+<p>也叫闭包(Closures), 经常被用来临时性地创建一个无名函数，用于回调函数等用途。</p>
+<p>$func = function($arg)<br>{<br> print $arg;<br>};</p>
+<p>$func(“Hello World”);<br>以上代码定义了一个匿名函数，并赋值给了 $func.<br>可以看到定义匿名函数依旧使用 function 关键字，只不过省略了函数名，直接是参数列表。</p>
+<p>然后我们又调用了 $func 所储存的匿名函数。</p>
+<p>匿名函数还可以用 use 关键字来捕捉外部变量：</p>
+<p>function arrayPlus($array, $num)<br>{<br> array_walk($array, function(&amp;$v) use($num){<br> $v += $num;<br> });<br>}<br>上面的代码定义了一个 arrayPlus() 函数(这不是匿名函数), 它会将一个数组($array)中的每一项，加上一个指定的数字($num).</p>
+<p>在 arrayPlus() 的实现中，我们使用了 array_walk() 函数，它会为一个数组的每一项执行一个回调函数，即我们定义的匿名函数。<br>在匿名函数的参数列表后，我们用 use 关键字将匿名函数外的 $num 捕捉到了函数内，以便知道到底应该加上多少。</p>
+<p>魔术方法：<strong>invoke(), </strong>callStatic()</p>
+<p>PHP 的面向对象体系中，提供了若干“魔术方法”，用于实现类似其他语言中的“重载”，如在访问不存在的属性、方法时触发某个魔术方法。</p>
+<p>随着匿名函数的加入，PHP 引入了一个新的魔术方法 __invoke().<br>该魔术方法会在将一个对象作为函数调用时被调用：</p>
+<p>class A<br>{<br> public function <strong>invoke($str)<br>    {<br>        print “A::</strong>invoke(): {$str}”;<br> }<br>}</p>
+<p>$a = new A;<br>$a(“Hello World”);<br>输出毫无疑问是：</p>
+<p>A::<strong>invoke(): Hello World
+</strong>callStatic() 则会在调用一个不存在的静态方法时被调用。</p>
+<p>命名空间</p>
+<p>PHP的命名空间有着前无古人后无来者的无比蛋疼的语法：</p>
+<p>&lt;?php<br>// 命名空间的分隔符是反斜杠，该声明语句必须在文件第一行。<br>// 命名空间中可以包含任意代码，但只有 <strong>类, 函数, 常量</strong> 受命名空间影响。<br>namespace XXOO\Test;</p>
+<p>// 该类的完整限定名是 \XXOO\Test\A , 其中第一个反斜杠表示全局命名空间。<br>class A{}</p>
+<p>// 你还可以在已经文件中定义第二个命名空间，接下来的代码将都位于 \Other\Test2 .<br>namespace Other\Test2;</p>
+<p>// 实例化来自其他命名空间的对象：<br>$a = new \XXOO\Test\A;<br>class B{}</p>
+<p>// 你还可以用花括号定义第三个命名空间<br>namespace Other {<br> // 实例化来自子命名空间的对象：<br> $b = new Test2\B;</p>
+<pre><code>// 导入来自其他命名空间的名称，并重命名，
+// 注意只能导入类，不能用于函数和常量。
+use \XXOO\Test\A as ClassA
+</code></pre>
+<p>}<br>更多有关命名空间的语法介绍请参见官网 [注].</p>
+<p>命名空间时常和 autoload 一同使用，用于自动加载类实现文件：</p>
+<p>spl_autoload_register(<br> function ($class) {<br> spl_autoload(str_replace(“\“, “/“, $class));<br> }<br>);<br>当你实例化一个类 \XXOO\Test\A 的时候，这个类的完整限定名会被传递给 autoload 函数，autoload 函数将类名中的命名空间分隔符(反斜杠)替换为斜杠，并包含对应文件。<br>这样可以实现类定义文件分级储存，按需自动加载。</p>
+<p>注：<a href="http://www.php.net/manual/zh/language.namespaces.php" target="_blank" rel="external">http://www.php.net/manual/zh/language.namespaces.php</a></p>
+<p>后期静态绑定</p>
+<p>PHP 的 OPP 机制，具有继承和类似虚函数的功能，例如如下的代码：</p>
+<p>class A<br>{<br> public function callFuncXXOO()<br> {<br> print $this-&gt;funcXXOO();<br> }</p>
+<pre><code>public function funcXXOO()
+{
+    return &quot;A::funcXXOO()&quot;;
+}
+</code></pre>
+<p>}</p>
+<p>class B extends A<br>{<br> public function funcXXOO()<br> {<br> return “B::funcXXOO”;<br> }<br>}</p>
+<p>$b = new B;<br>$b-&gt;callFuncXXOO();<br>输出是：</p>
+<p>B::funcXXOO<br>可以看到，当在 A 中使用 $this-&gt;funcXXOO() 时，体现了“虚函数”的机制，实际调用的是 B::funcXXOO().<br>然而如果将所有函数都改为静态函数：</p>
+<p>class A<br>{<br> static public function callFuncXXOO()<br> {<br> print self::funcXXOO();<br> }</p>
+<pre><code>static public function funcXXOO()
+{
+    return &quot;A::funcXXOO()&quot;;
+}
+</code></pre>
+<p>}</p>
+<p>class B extends A<br>{<br> static public function funcXXOO()<br> {<br> return “B::funcXXOO”;<br> }<br>}</p>
+<p>$b = new B;<br>$b-&gt;callFuncXXOO();<br>情况就没这么乐观了，输出是：</p>
+<p>A::funcXXOO()<br>这是因为 self 的语义本来就是“当前类”，所以 PHP5.3 给 static 关键字赋予了一个新功能：后期静态绑定：</p>
+<p>class A<br>{<br> static public function callFuncXXOO()<br> {<br> print static::funcXXOO();<br> }</p>
+<pre><code>// ...
+</code></pre>
+<p>}</p>
+<p>// …<br>这样就会像预期一样输出了：</p>
+<p>B::funcXXOO<br>Heredoc 和 Nowdoc</p>
+<p>PHP5.3 对 Heredoc 以及 Nowdoc 进行了一些改进，它们都用于在 PHP 代码中嵌入大段字符串。</p>
+<p>Heredoc 的行为类似于一个双引号字符串：</p>
+<p>$name = “MyName”;<br>echo &lt;&lt;&lt; TEXT<br>My name is “{$name}”.<br>TEXT;<br>Heredoc 以三个左尖括号开始，后面跟一个标识符(TEXT), 直到一个同样的顶格的标识符(不能缩进)结束。<br>就像双引号字符串一样，其中可以嵌入变量。</p>
+<p>Heredoc 还可以用于函数参数，以及类成员初始化：</p>
+<p>var_dump(&lt;&lt;&lt;EOD<br>Hello World<br>EOD<br>);</p>
+<p>class A<br>{<br> const xx = &lt;&lt;&lt; EOD<br>Hello World<br>EOD;</p>
+<pre><code>public $oo = &lt;&lt;&lt; EOD
+</code></pre>
+<p>Hello World<br>EOD;<br>}<br>Nowdoc 的行为像一个单引号字符串，不能在其中嵌入变量，和 Heredoc 唯一的区别就是，三个左尖括号后的标识符要以单引号括起来：</p>
+<p>$name = “MyName”;<br>echo &lt;&lt;&lt; ‘TEXT’<br>My name is “{$name}”.<br>TEXT;<br>输出：</p>
+<p>My name is “{$name}”.<br>用 const 定义常量</p>
+<p>PHP5.3 起同时支持在全局命名空间和类中使用 const 定义常量。</p>
+<p>旧式风格：</p>
+<p>define(“XOOO”, “Value”);<br>新式风格：</p>
+<p>const XXOO = “Value”;<br>const 形式仅适用于常量，不适用于运行时才能求值的表达式：</p>
+<p>// 正确<br>const XXOO = 1234;<br>// 错误<br>const XXOO = 2 * 617;<br>三元运算符简写形式</p>
+<p>旧式风格：</p>
+<p>echo $a ? $a : “No Value”;<br>可简写成：</p>
+<p>echo $a ?: “No Value”;<br>即如果省略三元运算符的第二个部分，会默认用第一个部分代替。</p>
+<p>Phar</p>
+<p>Phar即PHP Archive, 起初只是Pear中的一个库而已，后来在PHP5.3被重新编写成C扩展并内置到 PHP 中。<br>Phar用来将多个 .php 脚本打包(也可以打包其他文件)成一个 .phar 的压缩文件(通常是ZIP格式)。<br>目的在于模仿 Java 的 .jar, 不对，目的是为了让发布PHP应用程序更加方便。同时还提供了数字签名验证等功能。</p>
+<p>.phar 文件可以像 .php 文件一样，被PHP引擎解释执行，同时你还可以写出这样的代码来包含(require) .phar 中的代码：</p>
+<p>require(“xxoo.phar”);<br>require(“phar://xxoo.phar/xo/ox.php”);<br>更多信息请参见官网 [注].</p>
+<p>注：<a href="http://www.php.net/manual/zh/phar.using.intro.php" target="_blank" rel="external">http://www.php.net/manual/zh/phar.using.intro.php</a></p>
+<p>PHP5.4</p>
+<p>(2012-2013)</p>
+<p>Short Open Tag</p>
+<p>Short Open Tag 自 PHP5.4 起总是可用。<br>在这里集中讲一下有关 PHP 起止标签的问题。即：</p>
+<p>&lt;?php<br>// Code…<br>?&gt;<br>通常就是上面的形式，除此之外还有一种简写形式：</p>
+<p>&lt;? /<em> Code… </em>/ ?&gt;<br>还可以把</p>
+<p>&lt;?php echo $xxoo;?&gt;<br>简写成：</p>
+<p>&lt;?= $xxoo;?&gt;<br>这种简写形式被称为 Short Open Tag, 在 PHP5.3 起被默认开启，在 PHP5.4 起总是可用。<br>使用这种简写形式在 HTML 中嵌入 PHP 变量将会非常方便。</p>
+<p>对于纯 PHP 文件(如类实现文件), PHP 官方建议顶格写起始标记，同时 省略 结束标记。<br>这样可以确保整个 PHP 文件都是 PHP 代码，没有任何输出，否则当你包含该文件后，设置 Header 和 Cookie 时会遇到一些麻烦 [注].</p>
+<p>注：Header 和 Cookie 必须在输出任何内容之前被发送。</p>
+<p>数组简写形式</p>
+<p>这是非常方便的一项特征！</p>
+<p>// 原来的数组写法<br>$arr = array(“key” =&gt; “value”, “key2” =&gt; “value2”);<br>// 简写形式<br>$arr = [“key” =&gt; “value”, “key2” =&gt; “value2”];<br>Traits</p>
+<p>所谓Traits就是“构件”，是用来替代继承的一种机制。PHP中无法进行多重继承，但一个类可以包含多个Traits.</p>
+<p>// Traits不能被单独实例化，只能被类所包含<br>trait SayWorld<br>{<br> public function sayHello()<br> {<br> echo ‘World!’;<br> }<br>}</p>
+<p>class MyHelloWorld<br>{<br> // 将SayWorld中的成员包含进来<br> use SayWorld;<br>}</p>
+<p>$xxoo = new MyHelloWorld();<br>// sayHello() 函数是来自 SayWorld 构件的<br>$xxoo-&gt;sayHello();<br>Traits还有很多神奇的功能，比如包含多个Traits, 解决冲突，修改访问权限，为函数设置别名等等。<br>Traits中也同样可以包含Traits. 篇幅有限不能逐个举例，详情参见官网 [注].</p>
+<p>注：<a href="http://www.php.net/manual/zh/language.oop5.traits.php" target="_blank" rel="external">http://www.php.net/manual/zh/language.oop5.traits.php</a></p>
+<p>内置 Web 服务器</p>
+<p>PHP从5.4开始内置一个轻量级的Web服务器，不支持并发，定位是用于开发和调试环境。</p>
+<p>在开发环境使用它的确非常方便。</p>
+<p>php -S localhost:8000<br>这样就在当前目录建立起了一个Web服务器，你可以通过 <a href="http://localhost:8000/" target="_blank" rel="external">http://localhost:8000/</a> 来访问。<br>其中localhost是监听的ip，8000是监听的端口，可以自行修改。</p>
+<p>很多应用中，都会进行URL重写，所以PHP提供了一个设置路由脚本的功能:</p>
+<p>php -S localhost:8000 index.php<br>这样一来，所有的请求都会由index.php来处理。</p>
+<p>你还可以使用 XDebug 来进行断点调试。</p>
+<p>细节修改</p>
+<p>PHP5.4 新增了动态访问静态方法的方式：</p>
+<p>$func = “funcXXOO”;<br>A::{$func}();<br>新增在实例化时访问类成员的特征：</p>
+<p>(new MyClass)-&gt;xxoo();<br>新增支持对函数返回数组的成员访问解析(这种写法在之前版本是会报错的)：</p>
+<p>print func()[0];<br>PHP5.5</p>
+<p>(2013起)</p>
+<p>yield</p>
+<p>yield关键字用于当函数需要返回一个迭代器的时候, 逐个返回值。</p>
+<p>function number10()<br>{<br> for($i = 1; $i &lt;= 10; $i += 1)<br> yield $i;<br>}<br>该函数的返回值是一个数组：</p>
+<p>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]<br>list() 用于 foreach</p>
+<p>可以用 list() 在 foreach 中解析嵌套的数组：</p>
+<p>$array = [<br> [1, 2, 3],<br> [4, 5, 6],<br>];</p>
+<p>foreach ($array as list($a, $b, $c))<br> echo “{$a} {$b} {$c}\n”;<br>结果：</p>
+<p>1 2 3<br>4 5 6<br>细节修改</p>
+<p>不推荐使用 mysql 函数，推荐使用 PDO 或 MySQLi, 参见前文。<br>不再支持Windows XP.</p>
+<p>可用 MyClass::class 取到一个类的完整限定名(包括命名空间)。</p>
+<p>empty() 支持表达式作为参数。</p>
+<p>try-catch 结构新增 finally 块。</p>
+<p>PHP5.6</p>
+<p>更好的常量</p>
+<p>定义常量时允许使用之前定义的常量进行计算：</p>
+<p>const A = 2;<br>const B = A + 1;</p>
+<p>class C<br>{<br> const STR = “hello”;<br> const STR2 = self::STR + “, world”;<br>}<br>允许常量作为函数参数默认值：</p>
+<p>function func($arg = C::STR2)<br>更好的可变函数参数</p>
+<p>用于代替 func_get_args()</p>
+<p>function add(…$args)<br>{<br> $result = 0;<br> foreach($args as $arg)<br> $result += $arg;<br> return $result;<br>}<br>同时可以在调用函数时，把数组展开为函数参数：</p>
+<p>$arr = [2, 3];<br>add(1, …$arr);<br>// 结果为 6<br>命名空间</p>
+<p>命名空间支持常量和函数：</p>
+<p>namespace Name\Space {<br> const FOO = 42;<br> function f() { echo <strong>FUNCTION</strong>.”\n”; }<br>}</p>
+<p>namespace {<br> use const Name\Space\FOO;<br> use function Name\Space\f;</p>
+<pre><code>echo FOO.&quot;\n&quot;;
+f();
+</code></pre>
+<p>}</p>
+<p>本文发表自 <a href="http://post.zz173.com/detail/php-e8-87-aa-5-2-e5-88-b0-5-6-e4-b8-ad-e6-96-b0-e5-a2-9e-e7-9a-84-e5-8a-9f-e8-83-bd-e8-af-a6-e8-a7-a3.html">http://post.zz173.com/detail/php-e8-87-aa-5-2-e5-88-b0-5-6-e4-b8-ad-e6-96-b0-e5-a2-9e-e7-9a-84-e5-8a-9f-e8-83-bd-e8-af-a6-e8-a7-a3.html</a>  未经本人同意，禁止转载。</p>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/detail/sqlmap-e5-b8-b8-e7-94-a8-e6-b3-a8-e5-85-a5-e6-8c-87-e4-bb-a4.html" rel="next" title="sqlmap常用注入指令">
+                <i class="fa fa-chevron-left"></i> sqlmap常用注入指令
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/detail/lol-e5-8d-a1-e7-89-8c-e7-a7-92-e5-88-87-e7-89-8c-e7-9a-84-e5-ae-9e-e7-8e-b0-e6-96-b9-e6-b3-95-e3-80-81-e5-8e-9f-e7-90-86-e3-80-81-e4-bc-aa-e4-bb-a3-e7-a0-81-e3-80-81-e6-88-90-e5-93-81-e3-80-82.html" rel="prev" title="LOL卡牌秒切牌的实现方法、原理、伪代码、成品。">
+                LOL卡牌秒切牌的实现方法、原理、伪代码、成品。 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="133"
+           data-title="PHP 自 5.2 到 5.6 中新增的功能详解" data-url="http://post.zz173.com/detail/php-e8-87-aa-5-2-e5-88-b0-5-6-e4-b8-ad-e6-96-b0-e5-a2-9e-e7-9a-84-e5-8a-9f-e8-83-bd-e8-af-a6-e8-a7-a3.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/7907969"
+               alt="落月" />
+          <p class="site-author-name" itemprop="name">落月</p>
+          <p class="site-description motion-element" itemprop="description">不知乘月几人归，落月摇情满江树。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/index.html">
+              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2007 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">落月</span>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"blogx"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

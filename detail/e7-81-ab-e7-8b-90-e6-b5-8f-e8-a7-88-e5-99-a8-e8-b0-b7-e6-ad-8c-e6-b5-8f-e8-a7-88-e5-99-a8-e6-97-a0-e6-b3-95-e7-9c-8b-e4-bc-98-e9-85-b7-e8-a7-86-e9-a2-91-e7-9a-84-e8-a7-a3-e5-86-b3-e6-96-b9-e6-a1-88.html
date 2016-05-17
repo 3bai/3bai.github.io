@@ -1,0 +1,806 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="很久之前，我的电脑(win7 x64)无法看不了优酷了，而其他的flash显示完全正常，这让我感觉无比的心酸和蛋疼，因为在那期间，我刚好在好友的攒托下想搞优酷解说。可想而知这个打击对我来说是多么的巨大和令人心碎。
+好在我混迹IT界七八年，这点小麻烦还是难不到我的。我果断打开浏览器，熟练的输入百度，精确的搜索到了解决方案，其说法五花八门如：关闭油猴子、更改DNS、更改hosts文件、重装浏览器、重装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="火狐浏览器、谷歌浏览器无法看优酷视频的解决方案">
+<meta property="og:url" content="http://post.zz173.com/detail/e7-81-ab-e7-8b-90-e6-b5-8f-e8-a7-88-e5-99-a8-e8-b0-b7-e6-ad-8c-e6-b5-8f-e8-a7-88-e5-99-a8-e6-97-a0-e6-b3-95-e7-9c-8b-e4-bc-98-e9-85-b7-e8-a7-86-e9-a2-91-e7-9a-84-e8-a7-a3-e5-86-b3-e6-96-b9-e6-a1-88.html">
+<meta property="og:site_name" content="青枫浦">
+<meta property="og:description" content="很久之前，我的电脑(win7 x64)无法看不了优酷了，而其他的flash显示完全正常，这让我感觉无比的心酸和蛋疼，因为在那期间，我刚好在好友的攒托下想搞优酷解说。可想而知这个打击对我来说是多么的巨大和令人心碎。
+好在我混迹IT界七八年，这点小麻烦还是难不到我的。我果断打开浏览器，熟练的输入百度，精确的搜索到了解决方案，其说法五花八门如：关闭油猴子、更改DNS、更改hosts文件、重装浏览器、重装">
+<meta property="og:image" content="http://blogx-wordpress.stor.sinaapp.com/uploads/2013/11/11.jpg">
+<meta property="og:image" content="data:image/png;base64,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">
+<meta property="og:updated_time" content="2016-05-16T05:03:05.127Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="火狐浏览器、谷歌浏览器无法看优酷视频的解决方案">
+<meta name="twitter:description" content="很久之前，我的电脑(win7 x64)无法看不了优酷了，而其他的flash显示完全正常，这让我感觉无比的心酸和蛋疼，因为在那期间，我刚好在好友的攒托下想搞优酷解说。可想而知这个打击对我来说是多么的巨大和令人心碎。
+好在我混迹IT界七八年，这点小麻烦还是难不到我的。我果断打开浏览器，熟练的输入百度，精确的搜索到了解决方案，其说法五花八门如：关闭油猴子、更改DNS、更改hosts文件、重装浏览器、重装">
+<meta name="twitter:image" content="http://blogx-wordpress.stor.sinaapp.com/uploads/2013/11/11.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 2664337,
+      author: '<i class="fa fa-vimeo"></i>'
+    }
+  };
+</script>
+
+  <title> 火狐浏览器、谷歌浏览器无法看优酷视频的解决方案 | 青枫浦 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">青枫浦</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">落月博客post.zz173.com</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                火狐浏览器、谷歌浏览器无法看优酷视频的解决方案
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-11-11T09:18:59+08:00" content="2013-11-11">
+              2013-11-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计/" itemprop="url" rel="index">
+                    <span itemprop="name">设计</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/detail/e7-81-ab-e7-8b-90-e6-b5-8f-e8-a7-88-e5-99-a8-e8-b0-b7-e6-ad-8c-e6-b5-8f-e8-a7-88-e5-99-a8-e6-97-a0-e6-b3-95-e7-9c-8b-e4-bc-98-e9-85-b7-e8-a7-86-e9-a2-91-e7-9a-84-e8-a7-a3-e5-86-b3-e6-96-b9-e6-a1-88.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="42" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>很久之前，我的电脑(win7 x64)无法看不了优酷了，而其他的flash显示完全正常，这让我感觉无比的心酸和蛋疼，因为在那期间，我刚好在好友的攒托下想搞优酷解说。可想而知这个打击对我来说是多么的巨大和令人心碎。</p>
+<p>好在我混迹IT界七八年，这点小麻烦还是难不到我的。我果断打开浏览器，熟练的输入百度，精确的搜索到了解决方案，其说法五花八门如：关闭油猴子、更改DNS、更改hosts文件、重装浏览器、重装flash插件、甚至说重装系统的都有。但不用我说你们也知道，肯定答案不一而是，否则，我也不会写这篇博文了。</p>
+<p>一个本来我以为很简单的问题，解决起来却并不如我想象中容易。网上无资料的情况下，我就只好自己开始思考解决方案了。而实际上，这些年百度确实让我变得更加懒惰了。</p>
+<p>为什么单单优酷看不了呢？我初步想想是网络通信的原因，但我仔细检查了所有的通信以及DNS等，均无异常。那么我又开始怀疑是flash的原因，flash为什么单单优酷不正常呢？我分析是可能优酷使用了某个高级的函数或者功能导致flash不能正确的响应。但flash我已经重装了很多次，更换了不同的版本，仍然无用。</p>
+<p>问题已经陷入了僵局，无奈之下只有先行放下，下载个优酷客户端先用着。</p>
+<p>两个月后，当我已经快要忘记这个问题的时候，突然一个同事提起了360的沙盒模式，这让我灵光一现，突然想起了flash新版正在测试一个功能–沙盒模式，又称保护模式，是否是它影响到了优酷的正常相应呢？下班回到家后我决定尝试一下。在C:\WINDOWS\system32\Macromed\Flash我找到了mms.cfg，（<span style="color: #ff0000;">注意：如果你是64位的操作系统的话，应该是C:\WINDOWS\system64\Macromed\Flash</span>）。</p>
+<p>
+  <a href="http://blogx-wordpress.stor.sinaapp.com/uploads/2013/11/11.jpg" target="_blank" rel="external"><img src="http://blogx-wordpress.stor.sinaapp.com/uploads/2013/11/11.jpg" alt="" title="1"></a>
+</p>
+<p>然后在下面加上了一句</p>
+<p>`</p>
+<p>#关闭安全沙箱模式<br>ProtectedMode=0<br>`</p>
+<p><img src="data:image/png;base64,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" alt=""></p>
+<p>然后重启电脑，神奇的事情发生了。</p>
+<p>本文发表自 <a href="http://post.zz173.com/detail/e7-81-ab-e7-8b-90-e6-b5-8f-e8-a7-88-e5-99-a8-e8-b0-b7-e6-ad-8c-e6-b5-8f-e8-a7-88-e5-99-a8-e6-97-a0-e6-b3-95-e7-9c-8b-e4-bc-98-e9-85-b7-e8-a7-86-e9-a2-91-e7-9a-84-e8-a7-a3-e5-86-b3-e6-96-b9-e6-a1-88.html">http://post.zz173.com/detail/e7-81-ab-e7-8b-90-e6-b5-8f-e8-a7-88-e5-99-a8-e8-b0-b7-e6-ad-8c-e6-b5-8f-e8-a7-88-e5-99-a8-e6-97-a0-e6-b3-95-e7-9c-8b-e4-bc-98-e9-85-b7-e8-a7-86-e9-a2-91-e7-9a-84-e8-a7-a3-e5-86-b3-e6-96-b9-e6-a1-88.html</a>  未经本人同意，禁止转载。</p>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/detail/e5-8f-91-e5-b8-83css-e5-bf-ab-e9-80-9f-e5-85-a5-e9-97-a8-e6-95-99-e7-a8-8b.html" rel="next" title="发布CSS快速入门教程">
+                <i class="fa fa-chevron-left"></i> 发布CSS快速入门教程
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/detail/datagrid-e5-88-97-e5-ad-97-e6-ae-b5-e8-bd-ac-e6-8d-a2.html" rel="prev" title="DataGrid列字段转换">
+                DataGrid列字段转换 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="42"
+           data-title="火狐浏览器、谷歌浏览器无法看优酷视频的解决方案" data-url="http://post.zz173.com/detail/e7-81-ab-e7-8b-90-e6-b5-8f-e8-a7-88-e5-99-a8-e8-b0-b7-e6-ad-8c-e6-b5-8f-e8-a7-88-e5-99-a8-e6-97-a0-e6-b3-95-e7-9c-8b-e4-bc-98-e9-85-b7-e8-a7-86-e9-a2-91-e7-9a-84-e8-a7-a3-e5-86-b3-e6-96-b9-e6-a1-88.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/7907969"
+               alt="落月" />
+          <p class="site-author-name" itemprop="name">落月</p>
+          <p class="site-description motion-element" itemprop="description">不知乘月几人归，落月摇情满江树。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/index.html">
+              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2007 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">落月</span>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"blogx"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

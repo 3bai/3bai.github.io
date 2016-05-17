@@ -1,0 +1,869 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Linux centos关机与重启命令详解与实战
+Linux centos重启命令：
+
+  1、reboot
+  2、shutdown -r now 立刻重启(root用户使用)
+  3、shutdown -r 10 过10分钟自动重启(root用户使用)
+  4、shutdown -r 20:35 在时间为20:35时候重启(root用户使用)如果是通过shutdown命令设置重启的话，可以用s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos关机与重启命令详解">
+<meta property="og:url" content="http://post.zz173.com/detail/centos-e5-85-b3-e6-9c-ba-e4-b8-8e-e9-87-8d-e5-90-af-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3.html">
+<meta property="og:site_name" content="青枫浦">
+<meta property="og:description" content="Linux centos关机与重启命令详解与实战
+Linux centos重启命令：
+
+  1、reboot
+  2、shutdown -r now 立刻重启(root用户使用)
+  3、shutdown -r 10 过10分钟自动重启(root用户使用)
+  4、shutdown -r 20:35 在时间为20:35时候重启(root用户使用)如果是通过shutdown命令设置重启的话，可以用s">
+<meta property="og:updated_time" content="2016-05-16T05:03:05.133Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="centos关机与重启命令详解">
+<meta name="twitter:description" content="Linux centos关机与重启命令详解与实战
+Linux centos重启命令：
+
+  1、reboot
+  2、shutdown -r now 立刻重启(root用户使用)
+  3、shutdown -r 10 过10分钟自动重启(root用户使用)
+  4、shutdown -r 20:35 在时间为20:35时候重启(root用户使用)如果是通过shutdown命令设置重启的话，可以用s">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 2664337,
+      author: '<i class="fa fa-vimeo"></i>'
+    }
+  };
+</script>
+
+  <title> centos关机与重启命令详解 | 青枫浦 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">青枫浦</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">落月博客post.zz173.com</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                centos关机与重启命令详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-01-02T12:21:05+08:00" content="2014-01-02">
+              2014-01-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计/" itemprop="url" rel="index">
+                    <span itemprop="name">设计</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/detail/centos-e5-85-b3-e6-9c-ba-e4-b8-8e-e9-87-8d-e5-90-af-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="94" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Linux centos关机与重启命令详解与实战</p>
+<p>Linux centos重启命令：</p>
+<ul>
+  <li>1、reboot</li>
+  <li>2、shutdown -r now 立刻重启(root用户使用)</li>
+  <li>3、shutdown -r 10 过10分钟自动重启(root用户使用)</li>
+  <li>4、shutdown -r 20:35 在时间为20:35时候重启(root用户使用)<br>如果是通过shutdown命令设置重启的话，可以用shutdown -c命令取消重启</li>
+</ul>
+<p>Linux centos关机命令：</p>
+<ul>
+  <li>1、halt 立刻关机</li>
+  <li>2、poweroff 立刻关机</li>
+  <li>3、shutdown -h now 立刻关机(root用户使用)</li>
+  <li>4、shutdown -h 10 10分钟后自动关机<br>如果是通过shutdown命令设置关机的话，可以用shutdown -c命令取消重启</li>
+</ul>
+<p>1.shutdown</p>
+<p>shutdown命令安全地将系统关机。 有些用户会使用直接断掉电源的方式来关闭linux，</p>
+<p>这是十分危险的。因为linux与windows不同，其后台运行着许多进程，所以强制关机可能</p>
+<p>会导致进程的数据丢失﹐使系统处于不稳定的状态﹐甚至在有的系统中会损坏硬件设备。</p>
+<p>而在系统关机前使用shutdown命令﹐系统管理员会通知所有登录的用户系统将要关闭。</p>
+<p>并且login指令会被冻结﹐即新的用户不能再登录。直接关机或者延迟一定的时间才关机</p>
+<p>都是可能的﹐还可能重启。这是由所有进程〔process〕都会收到系统所送达的信号〔signal〕</p>
+<p>决定的。这让像vi之类的程序有时间储存目前正在编辑的文档﹐而像处理邮件〔mail〕和</p>
+<p>新闻〔news〕的程序则可以正常地离开等等。</p>
+<p>shutdown执行它的工作是送信号〔signal〕给init程序﹐要求它改变runlevel。</p>
+<p>Runlevel 0被用来停机〔halt〕﹐runlevel 6是用来重新激活〔reboot〕系统﹐</p>
+<p>而runlevel 1则是被用来让系统进入管理工作可以进行的状态﹔这是预设的﹐假定没有-h也</p>
+<p>没有-r参数给shutdown。要想了解在停机〔halt〕或者重新开机〔reboot〕过程中做了哪些</p>
+<p>动作﹐你可以在这个文件/etc/inittab里看到这些runlevels相关的资料。</p>
+<p>shutdown 参数说明:</p>
+<p>[-t] 在改变到其它runlevel之前﹐告诉init多久以后关机。</p>
+<p>[-r] 重启计算器。</p>
+<p>[-k] 并不真正关机﹐只是送警告信号给每位登录者〔login〕。</p>
+<p>[-h] 关机后关闭电源〔halt〕。</p>
+<p>[-n] 不用init﹐而是自己来关机。不鼓励使用这个选项﹐而且该选项所产生的后果往</p>
+<p>往不总是你所预期得到的。</p>
+<p>[-c] cancel current process取消目前正在执行的关机程序。所以这个选项当然没有</p>
+<p>时间参数﹐但是可以输入一个用来解释的讯息﹐而这信息将会送到每位使用者。</p>
+<p>[-f] 在重启计算器〔reboot〕时忽略fsck。</p>
+<p>[-F] 在重启计算器〔reboot〕时强迫fsck。</p>
+<p>[-time] 设定关机〔shutdown〕前的时间。</p>
+<p>2.halt—-最简单的关机命令</p>
+<p>其实halt就是调用shutdown -h。halt执行时﹐杀死应用进程﹐执行sync系统调用﹐</p>
+<p>文件系统写操作完成后就会停止内核。</p>
+<p>参数说明:</p>
+<p>[-n] 防止sync系统调用﹐它用在用fsck修补根分区之后﹐以阻止内核用老版本的超</p>
+<p>级块〔superblock〕覆盖修补过的超级块。</p>
+<p>[-w] 并不是真正的重启或关机﹐只是写wtmp〔/var/log/wtmp〕纪录。</p>
+<p>[-d] 不写wtmp纪录〔已包含在选项[-n]中〕。</p>
+<p>[-f] 没有调用shutdown而强制关机或重启。</p>
+<p>[-i] 关机〔或重启〕前﹐关掉所有的网络接口。</p>
+<p>[-p] 该选项为缺省选项。就是关机时调用poweroff。</p>
+<p>3.reboot</p>
+<p>reboot的工作过程差不多跟halt一样﹐不过它是引发主机重启﹐而halt是关机。它</p>
+<p>的参数与halt相差不多。</p>
+<p>4.init</p>
+<p>init是所有进程的祖先﹐它的进程号始终为1﹐所以发送TERM信号给init会终止所有的</p>
+<p>用户进程﹑守护进程等。shutdown 就是使用这种机制。init定义了8个运行级别(runlevel)，</p>
+<p>init 0为关机﹐init 1为重启。关于init可以长篇大论﹐这里就不再叙述。另外还有</p>
+<p>telinit命令可以改变init的运行级别﹐比如﹐telinit -iS可使系统进入单用户模式﹐</p>
+<p>并且得不到使用shutdown时的信息和等待时间。</p>
+<p>linux如何修改root管理员密码</p>
+<p>以root 身份登录(SSH操作)</p>
+<p>输入 passwd 命令 就可以看到提示输入新密码了</p>
+<p>输入密码的时候是看不到字符的。</p>
+<p>本文发表自 <a href="http://post.zz173.com/detail/centos-e5-85-b3-e6-9c-ba-e4-b8-8e-e9-87-8d-e5-90-af-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3.html">http://post.zz173.com/detail/centos-e5-85-b3-e6-9c-ba-e4-b8-8e-e9-87-8d-e5-90-af-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3.html</a>  未经本人同意，禁止转载。</p>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/detail/centos-e4-bf-ae-e6-94-b9-e4-b8-bb-e6-9c-ba-e5-90-8d.html" rel="next" title="CentOs修改主机名">
+                <i class="fa fa-chevron-left"></i> CentOs修改主机名
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/detail/centos-e5-ae-89-e8-a3-85-e5-92-8c-e9-85-8d-e7-bd-aeapache-e3-80-81php.html" rel="prev" title="centOS安装和配置apache、php">
+                centOS安装和配置apache、php <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="94"
+           data-title="centos关机与重启命令详解" data-url="http://post.zz173.com/detail/centos-e5-85-b3-e6-9c-ba-e4-b8-8e-e9-87-8d-e5-90-af-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/7907969"
+               alt="落月" />
+          <p class="site-author-name" itemprop="name">落月</p>
+          <p class="site-description motion-element" itemprop="description">不知乘月几人归，落月摇情满江树。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/index.html">
+              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2007 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">落月</span>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"blogx"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

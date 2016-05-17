@@ -1,0 +1,1129 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="杂谈," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="目前来说，短网址是一个非常流行的趋势，对于内链和跳转来说。
+比如新浪微博的t.cn
+腾讯的url.cn
+以及百度的dwz.cn，这些断链平台都提供了自己的接口以供开发者进行短链和长链的转换。
+这其中最简单的莫过于百度的短网址服务，dwz.cn。
+下面提供PHP版的加密和解密接口如下：
+
+
+
+
+ 1: &amp;lt;?php 
+
+
+
+ 2: 
+
+
+
+ 3: $ch=[curl_init](http://w">
+<meta property="og:type" content="article">
+<meta property="og:title" content="百度短网址接口与研究">
+<meta property="og:url" content="http://post.zz173.com/detail/baidu-short-url-interfaces-and-research.html">
+<meta property="og:site_name" content="青枫浦">
+<meta property="og:description" content="目前来说，短网址是一个非常流行的趋势，对于内链和跳转来说。
+比如新浪微博的t.cn
+腾讯的url.cn
+以及百度的dwz.cn，这些断链平台都提供了自己的接口以供开发者进行短链和长链的转换。
+这其中最简单的莫过于百度的短网址服务，dwz.cn。
+下面提供PHP版的加密和解密接口如下：
+
+
+
+
+ 1: &amp;lt;?php 
+
+
+
+ 2: 
+
+
+
+ 3: $ch=[curl_init](http://w">
+<meta property="og:updated_time" content="2016-05-16T05:03:05.120Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="百度短网址接口与研究">
+<meta name="twitter:description" content="目前来说，短网址是一个非常流行的趋势，对于内链和跳转来说。
+比如新浪微博的t.cn
+腾讯的url.cn
+以及百度的dwz.cn，这些断链平台都提供了自己的接口以供开发者进行短链和长链的转换。
+这其中最简单的莫过于百度的短网址服务，dwz.cn。
+下面提供PHP版的加密和解密接口如下：
+
+
+
+
+ 1: &amp;lt;?php 
+
+
+
+ 2: 
+
+
+
+ 3: $ch=[curl_init](http://w">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 2664337,
+      author: '<i class="fa fa-vimeo"></i>'
+    }
+  };
+</script>
+
+  <title> 百度短网址接口与研究 | 青枫浦 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">青枫浦</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">落月博客post.zz173.com</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                百度短网址接口与研究
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-08-28T18:06:06+08:00" content="2013-08-28">
+              2013-08-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/misc/" itemprop="url" rel="index">
+                    <span itemprop="name">misc</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/detail/baidu-short-url-interfaces-and-research.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="26" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>目前来说，短网址是一个非常流行的趋势，对于内链和跳转来说。</p>
+<p>比如新浪微博的t.cn</p>
+<p>腾讯的url.cn</p>
+<p>以及百度的dwz.cn，这些断链平台都提供了自己的接口以供开发者进行短链和长链的转换。</p>
+<p>这其中最简单的莫过于百度的短网址服务，dwz.cn。</p>
+<p>下面提供PHP版的加密和解密接口如下：</p>
+<pre style="border-bottom: #cecece 1px solid; border-left: #cecece 1px solid; padding-bottom: 5px; background-color: #fbfbfb; min-height: 40px; padding-left: 5px; width: 650px; padding-right: 5px; overflow: auto; border-top: #cecece 1px solid; border-right: #cecece 1px solid; padding-top: 5px">
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 1: <span style="color: #0000ff">&lt;?</span>php 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 2: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 3: $ch=[curl_init](http://www.php.net/curl_init)(); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 4: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 5: [curl_setopt](http://www.php.net/curl_setopt)($ch,CURLOPT_URL,&quot;<span style="color: #8b0000">http://dwz.cn/create.php</span>&quot;); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 6: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 7: [curl_setopt](http://www.php.net/curl_setopt)($ch,CURLOPT_POST,[true](http://www.php.net/true)); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 8: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 9: [curl_setopt](http://www.php.net/curl_setopt)($ch,CURLOPT_RETURNTRANSFER,[true](http://www.php.net/true)); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 10: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 11: $data=[array](http://www.php.net/array)('<span style="color: #8b0000">url</span>'=&gt;'<span style="color: #8b0000">http://www.baidu.com/</span>'); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 12: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 13: [curl_setopt](http://www.php.net/curl_setopt)($ch,CURLOPT_POSTFIELDS,$data); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 14: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 15: $strRes=[curl_exec](http://www.php.net/curl_exec)($ch); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 16: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 17: [curl_close](http://www.php.net/curl_close)($ch); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 18: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 19: $arrResponse=json_decode($strRes,[true](http://www.php.net/true)); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 20: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 21: [if](http://www.php.net/if)($arrResponse['<span style="color: #8b0000">status</span>']!=0) 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 22: { 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 23:  
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 24: [echo](http://www.php.net/echo) iconv('<span style="color: #8b0000">UTF-8</span>','<span style="color: #8b0000">GBK</span>',$arrResponse['<span style="color: #8b0000">err_msg</span>']).&quot;<span style="color: #8b0000">n</span>&quot;; 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 25: } 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 26: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 27: <span style="color: #008000">//返回短网址</span>
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 28: [echo](http://www.php.net/echo)$arrResponse['<span style="color: #8b0000">tinyurl</span>'].&quot;<span style="color: #8b0000">n</span>&quot;; 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 29: 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 30: <span style="color: #0000ff">?&gt;</span>
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 31:
+</pre>
+
+<p>下面是解密的</p>
+<p>&#160;</p>
+<pre style="border-bottom: #cecece 1px solid; border-left: #cecece 1px solid; padding-bottom: 5px; background-color: #fbfbfb; min-height: 40px; padding-left: 5px; width: 650px; padding-right: 5px; overflow: auto; border-top: #cecece 1px solid; border-right: #cecece 1px solid; padding-top: 5px">
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 1: <span style="color: #0000ff">&lt;?</span>php 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 2: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 3: $ch=[curl_init](http://www.php.net/curl_init)(); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 4: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 5: [curl_setopt](http://www.php.net/curl_setopt)($ch,CURLOPT_URL,&quot;<span style="color: #8b0000">http://dwz.cn/query.php</span>&quot;); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 6: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 7: [curl_setopt](http://www.php.net/curl_setopt)($ch,CURLOPT_POST,[true](http://www.php.net/true)); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 8: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 9: [curl_setopt](http://www.php.net/curl_setopt)($ch,CURLOPT_RETURNTRANSFER,[true](http://www.php.net/true)); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 10: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 11: $data=[array](http://www.php.net/array)('<span style="color: #8b0000">tinyurl</span>'=&gt;'<span style="color: #8b0000">http://dwz.cn/1E</span>'); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 12: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 13: [curl_setopt](http://www.php.net/curl_setopt)($ch,CURLOPT_POSTFIELDS,$data); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 14: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 15: $strRes=[curl_exec](http://www.php.net/curl_exec)($ch); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 16: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 17: [curl_close](http://www.php.net/curl_close)($ch); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 18: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 19: $arrResponse=json_decode($strRes,[true](http://www.php.net/true)); 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 20: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 21: [if](http://www.php.net/if)($arrResponse['<span style="color: #8b0000">status</span>']==0) 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 22: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 23: { 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 24: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 25:  
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 26: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 27: [echo](http://www.php.net/echo) iconv('<span style="color: #8b0000">UTF-8</span>','<span style="color: #8b0000">GBK</span>',$arrResponse['<span style="color: #8b0000">err_msg</span>']).&quot;<span style="color: #8b0000">n</span>&quot;; 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 28: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 29: } 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 30: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 31:  
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 32: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 33: [echo](http://www.php.net/echo)$arrResponse['<span style="color: #8b0000">longurl</span>'].&quot;<span style="color: #8b0000">n</span>&quot;; 
+</pre>
+<pre style="background-color: #ffffff; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 34: 
+</pre>
+<pre style="background-color: #fbfbfb; margin: 0em; width: 100%; font-family: consolas,'Courier new',courier,monospace; font-size: 12px">
+
+ 35: <span style="color: #0000ff">?&gt;</span>
+</pre>
+
+<p>很方便。。</p>
+<p>但是也有烦人的是，对于一些收录比较少的网站来说，会无法加密，返回&ldquo;网址可能存在风险&rdquo;的错误。</p>
+<p>很坑爹。</p>
+<p>建议试好再用。。</p>
+<p>如果实在不行的话，可以选择使用其他接口。敬请关注本博下篇博文讲述的新浪短链接口。</p>
+<p>本文发表自 <a href="http://post.zz173.com/detail/baidu-short-url-interfaces-and-research.html">http://post.zz173.com/detail/baidu-short-url-interfaces-and-research.html</a> 未经本人同意，禁止转载。</p>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/杂谈/" rel="tag">#杂谈</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/detail/practical-regex-collection.html" rel="next" title="实用的正则表达式集锦">
+                <i class="fa fa-chevron-left"></i> 实用的正则表达式集锦
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/detail/sina-microblogging-short-links-mouth-and-research.html" rel="prev" title="新浪微博短链接口与研究">
+                新浪微博短链接口与研究 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="26"
+           data-title="百度短网址接口与研究" data-url="http://post.zz173.com/detail/baidu-short-url-interfaces-and-research.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/7907969"
+               alt="落月" />
+          <p class="site-author-name" itemprop="name">落月</p>
+          <p class="site-description motion-element" itemprop="description">不知乘月几人归，落月摇情满江树。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/index.html">
+              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2007 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">落月</span>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"blogx"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
